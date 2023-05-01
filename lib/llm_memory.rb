@@ -8,6 +8,8 @@ require_relative "llm_memory/loaders/file_loader"
 
 # main role of memory
 require_relative "llm_memory/hippocampus"
+#require_relative "llm_memory/broca" # output ?
+#require_relative "llm_memory/wernicke" # comprehend ?
 
 require_relative "llm_memory/version"
 
@@ -32,6 +34,7 @@ module LlmMemory
     loader_instance.load(*args)
   end
 
-
+  def self.output(info, prompt, llm_model)
+  end
 
 end
