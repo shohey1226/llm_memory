@@ -1,6 +1,6 @@
 # lib/lilyama_index/loader.rb
 module LlmMemory
-  module loader
+  module Loader
     def self.included(base)
       base.extend(ClassMethods)
     end

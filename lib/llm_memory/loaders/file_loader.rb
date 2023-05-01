@@ -2,14 +2,15 @@ require 'find'
 require_relative '../loader'
 
 module LlmMemory
-  class File
+  class FileLoader
     include Loader
 
     register_loader :file
 
-    def load(directory_path: directory_path)
+    def load(directory_path)
       files_array = []
 
+      puts directory_path
       Find.find(directory_path) do |file_path|
         next if File.directory?(file_path)
     

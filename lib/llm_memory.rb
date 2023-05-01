@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+# config
+require_relative "llm_memory/configuration"
 # loader
 require_relative "llm_memory/loader"
-require_relative "llm_memory/loaders/file"
+require_relative "llm_memory/loaders/file_loader"
 
 require_relative "llm_memory/version"
 
@@ -21,7 +23,7 @@ module LlmMemory
 
   # Loader
   def self.load(loader_name, *args)
-    reader_class = LoaderManager.loaders[loader_name]
+    loader_class = LoaderManager.loaders[loader_name]
     raise "Loader '#{loader_name}' not found." unless loader_class
     loader_instance = loader_class.new
     loader_instance.load(*args)
