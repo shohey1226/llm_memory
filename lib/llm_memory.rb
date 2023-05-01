@@ -6,6 +6,9 @@ require_relative "llm_memory/configuration"
 require_relative "llm_memory/loader"
 require_relative "llm_memory/loaders/file_loader"
 
+# main role of memory
+require_relative "llm_memory/hippocampus"
+
 require_relative "llm_memory/version"
 
 module LlmMemory
