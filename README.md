@@ -52,15 +52,10 @@ Given the context information and not prior knowledge,
 answer the question: <%= query_str %>
 TEMPLATE
 
-erb = ERB.new(template)
-prompt = erb.result
+broca = LlmMemory::Broca.new(prompt: tempate, model: 'gpt-3.5-turbo')
+message = broca.response(query_str: query_str, related_docs: related_docs)
 
-messages = []
-message = LlmMemory.output(prompt: prompt, model: 'gpt-3.5-turbo', previous_messages: messages)
-messages.push(query_str)
-messages.push(message)
-...
-message = LlmMemory.output(prompt: prompt, model: 'gpt-3.5-turbo', messages: messages)
+
 
 ```
 
