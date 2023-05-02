@@ -18,7 +18,51 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+docs = LlmMemory.load(:file, "/tmp/a_directory")
+# docs is just an array of hash.
+# You don't have to use load method but create own hash with having content and metadata(optional)
+# docs = [{
+#   content: "Hi there",
+#   metadata: {
+#     file_name: "a.txt"
+#   }
+# },,,]
+
+hippocampus = LlmMemory::Hippocampus.new
+hippocampus.memorize(docs)
+
+query_str = "Hello, world"
+related_docs = hippocampus.query(query_str, top_k: 3)
+#[{
+#    content: "Hi there",
+#    metadata: { ... }
+#},,,]
+
+tempalte = <<-TEMPLATE
+Context information is below.
+---------------------
+<% related_docs.each do |doc| %>
+<%= doc.content %>
+file: <%= doc.metadata[:file_name] %>
+
+<% end %>
+---------------------
+Given the context information and not prior knowledge,
+answer the question: <%= query_str %>
+TEMPLATE
+
+erb = ERB.new(template)
+prompt = erb.result
+
+messages = []
+message = LlmMemory.output(prompt: prompt, model: 'gpt-3.5-turbo', previous_messages: messages)
+messages.push(query_str)
+messages.push(message)
+...
+message = LlmMemory.output(prompt: prompt, model: 'gpt-3.5-turbo', messages: messages)
+
+```
 
 ## Development
 

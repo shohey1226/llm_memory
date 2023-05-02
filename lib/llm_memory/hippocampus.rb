@@ -6,7 +6,6 @@ require_relative "embeddings/openai"
 
 module LlmMemory
   class Hippocampus
-
     def initialize(embedding_name: :openai, store_name: :redis, chunk_size: 1024)
       embedding_class = EmbeddingManager.embeddings[embedding_name]
       raise "Embedding '#{embedding_name}' not found." unless embedding_class
@@ -14,7 +13,7 @@ module LlmMemory
 
       store_class = StoreManager.stores[store_name]
       raise "Store '#{store_name}' not found." unless store_class
-      @store_instance = store_class.new      
+      @store_instance = store_class.new
 
       @chunk_size = chunk_size
     end
@@ -28,10 +27,6 @@ module LlmMemory
         vector = @embedding_instance.embed_document(content)
         docs[:vector] = vector
       end
-
-      
-      
     end
-
   end
 end
