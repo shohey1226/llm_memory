@@ -54,9 +54,10 @@ TEMPLATE
 
 broca = LlmMemory::Broca.new(prompt: tempate, model: 'gpt-3.5-turbo')
 message = broca.response(query_str: query_str, related_docs: related_docs)
-
-
-
+...
+query_str2 = "how are you?"
+related_docs = hippocampus.query(query_str2, top_k: 3)
+message2 = broca.response(query_str: query_str2, related_docs: related_docs)
 ```
 
 ## Development
