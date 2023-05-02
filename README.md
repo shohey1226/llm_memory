@@ -19,7 +19,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Usage
 
 ```ruby
-docs = LlmMemory.load(:file, "/tmp/a_directory")
+docs = LlmMemory::Wernicke.load(:file, "/tmp/a_directory")
 # docs is just an array of hash.
 # You don't have to use load method but
 # create own hash with having content and metadata(optional)
