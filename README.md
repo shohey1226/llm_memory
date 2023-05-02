@@ -21,7 +21,8 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```ruby
 docs = LlmMemory.load(:file, "/tmp/a_directory")
 # docs is just an array of hash.
-# You don't have to use load method but create own hash with having content and metadata(optional)
+# You don't have to use load method but
+# create own hash with having content and metadata(optional)
 # docs = [{
 #   content: "Hi there",
 #   metadata: {
@@ -53,11 +54,11 @@ answer the question: <%= query_str %>
 TEMPLATE
 
 broca = LlmMemory::Broca.new(prompt: tempate, model: 'gpt-3.5-turbo')
-message = broca.response(query_str: query_str, related_docs: related_docs)
+message = broca.respond(query_str: query_str, related_docs: related_docs)
 ...
 query_str2 = "how are you?"
 related_docs = hippocampus.query(query_str2, top_k: 3)
-message2 = broca.response(query_str: query_str2, related_docs: related_docs)
+message2 = broca.respond(query_str: query_str2, related_docs: related_docs)
 ```
 
 ## Development
