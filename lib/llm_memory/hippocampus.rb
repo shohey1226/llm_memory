@@ -33,6 +33,24 @@ module LlmMemory
       @store.add(data: docs)
     end
 
+    def query(query_str, size: 3)
+      vector = @embedding_instance.embed_document(query_str)
+      response_list = @store.search(query: vector, k: size)
+      response_list.shift # the first one is the size
+      # now [redis_key1, [],,, ]
+      result = response_list.each_slice(2).to_h.values.map { |v|
+        v.each_slice(2).to_h.transform_keys(&:to_sym)
+      }
+      result.each do |item|
+        item[:metadata] = JSON.parse(item[:metadata])
+      end
+      result
+    end
+
+    def forgot_all
+      @store.drop_index
+    end
+
     def add_vectors(docs)
       # embed documents and add vector
       result = []

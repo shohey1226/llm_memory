@@ -129,7 +129,7 @@ module LlmMemory
       command = [
         "FT.SEARCH",
         @index_name,
-        "*=>[KNN #{k} @content_vector $blob AS vector_score]",
+        "*=>[KNN #{k} @vector $blob AS vector_score]",
         "PARAMS",
         2,
         "blob",
@@ -142,10 +142,9 @@ module LlmMemory
         k,
         "RETURN",
         3,
-        @metadata_key,
-        @content_key,
-        # "__content_vector_score",
         "vector_score",
+        @content_key,
+        @metadata_key,
         "DIALECT",
         2
       ]
