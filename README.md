@@ -34,7 +34,7 @@ hippocampus = LlmMemory::Hippocampus.new
 hippocampus.memorize(docs)
 
 query_str = "What is my name?"
-related_docs = hippocampus.query(query_str, size: 3)
+related_docs = hippocampus.query(query_str, limit: 3)
 #[{
 #   vector_score: "0.192698478699",
 #   content: "My name is Mike",
@@ -60,7 +60,7 @@ messages = broca.respond(query_str: query_str, related_docs: related_docs)
 
 ...
 query_str2 = "How are you?"
-related_docs = hippocampus.query(query_str2, size: 3)
+related_docs = hippocampus.query(query_str2, limit: 3)
 message2 = broca.respond(query_str: query_str2, related_docs: related_docs)
 ```
 

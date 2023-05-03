@@ -51,7 +51,7 @@ RSpec.describe LlmMemory::Hippocampus do
   describe "query", :vcr do
     it "search from redis and find", :vcr do
       hippocampus = LlmMemory::Hippocampus.new
-      res = hippocampus.query("What is my name?", size: 2)
+      res = hippocampus.query("What is my name?", limit: 2)
       # pp res
       expect(res.length).to eq(2)
       expect(res.first[:content]).to eq("Hello, I'm Shohei.")

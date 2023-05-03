@@ -26,7 +26,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 03 May 2023 14:47:17 GMT
+      - Wed, 03 May 2023 22:05:12 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -42,7 +42,7 @@ http_interactions:
       Openai-Organization:
       - emon-qgiyyz
       Openai-Processing-Ms:
-      - '677'
+      - '791'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -60,20 +60,20 @@ http_interactions:
       X-Ratelimit-Reset-Tokens:
       - 47ms
       X-Request-Id:
-      - c11206ce3ec7ed49291418e79f11ecf2
+      - da9c37c199c74e5391337f062eff0f0e
       Cf-Cache-Status:
       - DYNAMIC
       Server:
       - cloudflare
       Cf-Ray:
-      - 7c194c57aa822644-NRT
+      - 7c1bcdd2dd1adff5-NRT
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"chatcmpl-7C83AJwQpxTyPDmsYWTiCPM3NPlhi","object":"chat.completion","created":1683125236,"model":"gpt-3.5-turbo-0301","usage":{"prompt_tokens":47,"completion_tokens":6,"total_tokens":53},"choices":[{"message":{"role":"assistant","content":"Your
+      string: '{"id":"chatcmpl-7CEsxF1i8gbeumMNoVLtB2bzCI8Qf","object":"chat.completion","created":1683151511,"model":"gpt-3.5-turbo-0301","usage":{"prompt_tokens":47,"completion_tokens":6,"total_tokens":53},"choices":[{"message":{"role":"assistant","content":"Your
         name is Shohei."},"finish_reason":"stop","index":0}]}
 
         '
-  recorded_at: Wed, 03 May 2023 14:47:17 GMT
+  recorded_at: Wed, 03 May 2023 22:05:12 GMT
 recorded_with: VCR 6.1.0

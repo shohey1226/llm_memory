@@ -9,8 +9,6 @@ module LlmMemory
 
     def load(directory_path)
       files_array = []
-
-      puts directory_path
       Find.find(directory_path) do |file_path|
         next if File.directory?(file_path)
 

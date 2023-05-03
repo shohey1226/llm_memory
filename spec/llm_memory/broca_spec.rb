@@ -14,14 +14,14 @@ RSpec.describe LlmMemory::Broca do
     answer the question: <%= query_str %>
   TEMPLATE
 
-  describe ".new" do
+  describe "new" do
     it "instantiates a new Broca object" do
       broca = LlmMemory::Broca.new(prompt: "erb_template")
       expect(broca).to be_a(LlmMemory::Broca)
     end
   end
 
-  describe ".generate_prompt" do
+  describe "generate_prompt" do
     it "creates prompt with erb" do
       related_docs = [{content: "foo"}, {content: "bar"}]
       broca = LlmMemory::Broca.new(prompt: template)
@@ -40,7 +40,7 @@ RSpec.describe LlmMemory::Broca do
     end
   end
 
-  describe ".generate_prompt" do
+  describe "generate_prompt" do
     it "runs respond method", :vcr do
       related_docs = [{content: "My name is Shohei"}, {content: "I'm a software engineer"}]
       broca = LlmMemory::Broca.new(prompt: template)

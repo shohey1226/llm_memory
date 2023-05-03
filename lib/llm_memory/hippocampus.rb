@@ -33,9 +33,9 @@ module LlmMemory
       @store.add(data: docs)
     end
 
-    def query(query_str, size: 3)
+    def query(query_str, limit: 3)
       vector = @embedding_instance.embed_document(query_str)
-      response_list = @store.search(query: vector, k: size)
+      response_list = @store.search(query: vector, k: limit)
       response_list.shift # the first one is the size
       # now [redis_key1, [],,, ]
       result = response_list.each_slice(2).to_h.values.map { |v|
