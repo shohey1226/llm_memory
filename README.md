@@ -40,7 +40,7 @@ related_docs = hippocampus.query(query_str, top_k: 3)
 #    metadata: { ... }
 #},,,]
 
-tempalte = <<-TEMPLATE
+template = <<-TEMPLATE
 Context information is below.
 ---------------------
 <% related_docs.each do |doc| %>
