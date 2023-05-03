@@ -1,6 +1,6 @@
 require "redis"
 require_relative "../store"
-#require "lilyama_index"
+# require "lilyama_index"
 require "json"
 
 module LlmMemory

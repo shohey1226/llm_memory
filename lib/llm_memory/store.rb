@@ -26,7 +26,6 @@ module LlmMemory
     def search
       raise NotImplementedError, "Each store must implement the 'search' method."
     end
-
   end
 
   class StoreManager
