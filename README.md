@@ -46,8 +46,8 @@ template = <<-TEMPLATE
 Context information is below.
 ---------------------
 <% related_docs.each do |doc| %>
-<%= doc.content %>
-file: <%= doc.metadata[:file_name] %>
+<%= doc[:content] %>
+file: <%= doc[:metadata][:file_name] %>
 
 <% end %>
 ---------------------
