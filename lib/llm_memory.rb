@@ -2,9 +2,6 @@
 
 # config
 require_relative "llm_memory/configuration"
-# loader
-require_relative "llm_memory/loader"
-require_relative "llm_memory/loaders/file_loader"
 
 require_relative "llm_memory/hippocampus"
 require_relative "llm_memory/broca"
@@ -24,15 +21,4 @@ module LlmMemory
     yield(configuration) if block_given?
   end
   configure # init for default values
-
-  # Loader
-  def self.load(loader_name, *args)
-    loader_class = LoaderManager.loaders[loader_name]
-    raise "Loader '#{loader_name}' not found." unless loader_class
-    loader_instance = loader_class.new
-    loader_instance.load(*args)
-  end
-
-  def self.output(info, prompt, llm_model)
-  end
 end

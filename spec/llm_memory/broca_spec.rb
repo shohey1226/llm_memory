@@ -35,7 +35,6 @@ RSpec.describe LlmMemory::Broca do
     it "runs respond method", :vcr do
       related_docs = [{content: "My name is Shohei"}, {content: "I'm a software engineer"}]
       broca = LlmMemory::Broca.new(prompt: template)
-      ENV["OPENAI_ACCESS_TOKEN"] = "dummy"
       res = broca.respond(related_docs: related_docs, query_str: "what is my name?")
       expect(res).to include("Shohei")
     end
