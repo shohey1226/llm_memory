@@ -29,8 +29,17 @@ RSpec.describe LlmMemory::Broca do
       expect(prompt).to include("foo")
       expect(prompt).to include("how are you?")
     end
-    # Add more test cases as needed
   end
+
+  describe "adjust_token_count" do
+    it "should remove the message", :vcr do
+      broca = LlmMemory::Broca.new(prompt: "I", max_token: 4)
+      broca.messages = [{content: "foo bar"}, {content: "this is my pen"}]
+      broca.adjust_token_count
+      expect(broca.messages).to eq([{content: "this is my pen"}])
+    end
+  end
+
   describe ".generate_prompt" do
     it "runs respond method", :vcr do
       related_docs = [{content: "My name is Shohei"}, {content: "I'm a software engineer"}]
