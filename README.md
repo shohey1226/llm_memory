@@ -33,10 +33,10 @@ docs = LlmMemory::Wernicke.load(:file, "/tmp/a_directory")
 hippocampus = LlmMemory::Hippocampus.new
 hippocampus.memorize(docs)
 
-query_str = "Hello, world"
+query_str = "What is my name?"
 related_docs = hippocampus.query(query_str, top_k: 3)
 #[{
-#    content: "Hi there",
+#    content: "My name is Mike",
 #    metadata: { ... }
 #},,,]
 
@@ -56,7 +56,7 @@ TEMPLATE
 broca = LlmMemory::Broca.new(prompt: tempate, model: 'gpt-3.5-turbo')
 message = broca.respond(query_str: query_str, related_docs: related_docs)
 ...
-query_str2 = "how are you?"
+query_str2 = "How are you?"
 related_docs = hippocampus.query(query_str2, top_k: 3)
 message2 = broca.respond(query_str: query_str2, related_docs: related_docs)
 ```
