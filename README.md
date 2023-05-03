@@ -36,8 +36,9 @@ hippocampus.memorize(docs)
 query_str = "What is my name?"
 related_docs = hippocampus.query(query_str, size: 3)
 #[{
-#    content: "My name is Mike",
-#    metadata: { ... }
+#   vector_score: "0.192698478699",
+#   content: "My name is Mike",
+#   metadata: { ... }
 #},,,]
 
 template = <<-TEMPLATE
@@ -54,7 +55,8 @@ answer the question: <%= query_str %>
 TEMPLATE
 
 broca = LlmMemory::Broca.new(prompt: tempate, model: 'gpt-3.5-turbo')
-message = broca.respond(query_str: query_str, related_docs: related_docs)
+messages = broca.respond(query_str: query_str, related_docs: related_docs)
+
 ...
 query_str2 = "How are you?"
 related_docs = hippocampus.query(query_str2, size: 3)
