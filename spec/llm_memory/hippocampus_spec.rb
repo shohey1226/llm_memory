@@ -34,4 +34,13 @@ RSpec.describe LlmMemory::Hippocampus do
       expect(doc[:metadata]).to eq({info: "test"})
     end
   end
+
+  describe "memorize", :vcr do
+    it "should add docs to redis", :vcr do
+      hippocampus = LlmMemory::Hippocampus.new
+      docs = [{content: "Hello, I'm Shohei. I'm working as a sotware developer", metadata: {info: "test"}}]
+      res = hippocampus.memorize(docs)
+      expect(res.values.first).to eq("Hello, I'm Shohei. I'm working as a sotware developer")
+    end
+  end
 end

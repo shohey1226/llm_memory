@@ -27,6 +27,7 @@ OPENAI_ACCESS_TOKEN to just run against the stored VCR responses."
   config.before(:all) do
     LlmMemory.configure do |c|
       c.openai_access_token = ENV.fetch("OPENAI_ACCESS_TOKEN", "dummy-token")
+      c.redis_url = ENV.fetch("REDISCLOUD_URL", "redis://localhost:6379")
     end
   end
 end

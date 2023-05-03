@@ -1,6 +1,5 @@
 require "redis"
 require_relative "../store"
-# require "lilyama_index"
 require "json"
 
 module LlmMemory
@@ -77,11 +76,12 @@ module LlmMemory
 
     # data = [{ content: "", content_vector: [], metadata: {} }]
     def add(data: [])
+      result = {}
       @client.pipelined do |pipeline|
         data.each_with_index do |d, i|
-          key = "#{@index_name}:#{i}"
+          key = "#{@index_name}:#{SecureRandom.uuid.delete("-")}"
           meta_json = d[:metadata].nil? ? "" : d[:metadata].to_json # serialize
-          vector_value = d[:content_vector].map(&:to_f).pack("f*")
+          vector_value = d[:vector].map(&:to_f).pack("f*")
           pipeline.hset(
             key,
             {
@@ -90,8 +90,10 @@ module LlmMemory
               @metadata_key => meta_json
             }
           )
+          result[key] = d[:content]
         end
       end
+      result
     # data.each_with_index do |d, i|
     #   key = "#{@index_name}:#{i}"
     #   vector_value = d[:content_vector].map(&:to_f).pack("f*")

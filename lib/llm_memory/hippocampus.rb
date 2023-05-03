@@ -6,23 +6,31 @@ require_relative "embeddings/openai"
 
 module LlmMemory
   class Hippocampus
-    def initialize(embedding_name: :openai, store_name: :redis, chunk_size: 1024, chunk_overlap: 50)
+    def initialize(
+      embedding_name: :openai,
+      chunk_size: 1024,
+      chunk_overlap: 50,
+      store_name: :redis,
+      index_name: "llm_memory"
+    )
       embedding_class = EmbeddingManager.embeddings[embedding_name]
       raise "Embedding '#{embedding_name}' not found." unless embedding_class
       @embedding_instance = embedding_class.new
 
       store_class = StoreManager.stores[store_name]
       raise "Store '#{store_name}' not found." unless store_class
-      @store_instance = store_class.new
+      @store = store_class.new(index_name: index_name)
 
       # word count, not char count
       @chunk_size = chunk_size
       @chunk_overlap = chunk_overlap
     end
 
-    def memorize(docs: [])
+    def memorize(docs)
       docs = make_chunks(docs)
       docs = add_vectors(docs)
+      @store.create_index unless @store.index_exists?
+      @store.add(data: docs)
     end
 
     def add_vectors(docs)
