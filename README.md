@@ -41,6 +41,7 @@ related_docs = hippocampus.query(query_str, size: 3)
 #   metadata: { ... }
 #},,,]
 
+# ERB
 template = <<-TEMPLATE
 Context information is below.
 ---------------------
