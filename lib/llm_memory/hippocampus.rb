@@ -22,13 +22,23 @@ module LlmMemory
 
     def memorize(docs: [])
       docs = make_chunks(docs)
+      docs = add_vectors(docs)
+    end
 
+    def add_vectors(docs)
       # embed documents and add vector
+      result = []
       docs.each do |doc|
         content = doc[:content]
+        metadata = doc[:metadata]
         vector = @embedding_instance.embed_document(content)
-        docs[:vector] = vector
+        result.push({
+          content: content,
+          metadata: metadata,
+          vector: vector
+        })
       end
+      result
     end
 
     def make_chunks(docs)

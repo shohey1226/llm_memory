@@ -11,8 +11,8 @@ module LlmMemory
       end
     end
 
-    def embed_documents(texts)
-      raise NotImplementedError, "Each Embedding must implement the 'load_data' method."
+    def embed_document(text)
+      raise NotImplementedError, "Each Embedding must implement the 'embed_document' method."
     end
   end
 
