@@ -34,7 +34,7 @@ hippocampus = LlmMemory::Hippocampus.new
 hippocampus.memorize(docs)
 
 query_str = "What is my name?"
-related_docs = hippocampus.query(query_str, top_k: 3)
+related_docs = hippocampus.query(query_str, size: 3)
 #[{
 #    content: "My name is Mike",
 #    metadata: { ... }

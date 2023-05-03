@@ -12,7 +12,7 @@ module LlmMemory
     end
 
     def load
-      raise NotImplementedError, "Each loader must implement the 'load_data' method."
+      raise NotImplementedError, "Each loader must implement the 'load' method."
     end
   end
 
