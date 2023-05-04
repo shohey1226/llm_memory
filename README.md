@@ -1,6 +1,6 @@
-# LlmMemory
+# LLM Memory 🌊🐴🧠
 
-TODO: Delete this and the text below, and describe your gem
+LLM Memory is a Ruby gem designed to provide large language models (LLMs) like ChatGPT with memory using in-context learning.
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/llm_memory`. To experiment with that code, run `bin/console` for an interactive prompt.
 
