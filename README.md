@@ -38,7 +38,28 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
     $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
 
+### Setup
+
+Set environment variable `OPENAI_ACCESS_TOKEN` and `REDISCLOUD_URL`
+or set in initializer.
+
+```ruby
+LlmMemory.configure do |c|
+  c.openai_access_token = "xxxxx"
+  c.redis_url = "redis://xxxx:6379"
+end
+```
+
 ## Usage
+
+To use LLM Memory, follow these steps:
+
+1. Install the gem: gem install llm_memory
+2. Set up Redis with Redisearch module enabled
+3. Configure LLM Memory to connect to your Redis instance
+4. Use LlmMemory::Wernicke to load data from your external sources
+5. Use LlmMemory::Hippocampus to search for relevant information based on user queries
+6. Create and use ERB templates with LlmMemory::Broca to generate responses based on the information retrieved
 
 ```ruby
 docs = LlmMemory::Wernicke.load(:file, "/tmp/a_directory")
