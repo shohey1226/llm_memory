@@ -1,8 +1,22 @@
-# LLM Memory 🌊🐴🧠
+# 🧠 LLM Memory 🌊🐴
 
 LLM Memory is a Ruby gem designed to provide large language models (LLMs) like ChatGPT with memory using in-context learning.
+This enables better integration with systems such as Rails and web services while providing a more user-friendly and abstract interface based on brain terms.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/llm_memory`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Key Features
+
+- In-context learning through input prompt context insertion
+- Data connectors for various data sources
+- Inspired by the Python library, Llama_index
+- Focus on integration with existing systems
+- Easy-to-understand abstraction using brain-related terms
+- Plugin architecture for custom loader creation and extending LLM support
+
+## LLM Memory Components
+
+1. LlmMemory::Wernicke: Responsible for loading external data (currently from files). More loader types are planned for future development.
+2. LlmMemory::Hippocampus: Handles interaction with vector databases to retrieve relevant information based on the query. Currently, Redis with the Redisearch module is used as the vector database. Redisearch is appropriate for common web services and available on Redis Cloud, which offers a free plan for trial purposes.
+3. LlmMemory::Broca: Responds to queries using memories provided by the Hippocampus component. ERB is used for prompt templates, and a variety of templates can be found online (e.g., in LangChain prompt).
 
 ## Installation
 
