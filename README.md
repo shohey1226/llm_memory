@@ -14,6 +14,9 @@ This enables better integration with systems such as Rails and web services whil
 
 ## LLM Memory Components
 
+![image](https://user-images.githubusercontent.com/1880965/236099477-421b2003-79d2-4a7c-8f80-1afac4fd616d.png)
+
+
 1. LlmMemory::Wernicke: Responsible for loading external data (currently from files). More loader types are planned for future development.
 
 > Wernicke's area in brain is involved in the comprehension of written and spoken language
