@@ -53,7 +53,7 @@ end
 To use LLM Memory, follow these steps:
 
 1. Install the gem: gem install llm_memory
-2. Set up Redis with Redisearch module enabled
+2. Set up Redis with Redisearch module enabled - Go to [Reids Cloud](https://redis.com/redis-enterprise-cloud/overview/) and get the redis url
 3. Configure LLM Memory to connect to your Redis instance
 4. Use LlmMemory::Wernicke to load data from your external sources
 5. Use LlmMemory::Hippocampus to search for relevant information based on user queries
