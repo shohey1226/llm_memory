@@ -7,7 +7,7 @@ This enables better integration with systems such as Rails and web services whil
 
 - In-context learning through input prompt context insertion
 - Data connectors for various data sources
-- Inspired by the Python library, Llama_index
+- Inspired by the Python library, [LlamaIndex](https://github.com/jerryjliu/llama_index)
 - Focus on integration with existing systems
 - Easy-to-understand abstraction using brain-related terms
 - Plugin architecture for custom loader creation and extending LLM support
@@ -15,8 +15,16 @@ This enables better integration with systems such as Rails and web services whil
 ## LLM Memory Components
 
 1. LlmMemory::Wernicke: Responsible for loading external data (currently from files). More loader types are planned for future development.
-2. LlmMemory::Hippocampus: Handles interaction with vector databases to retrieve relevant information based on the query. Currently, Redis with the Redisearch module is used as the vector database. Redisearch is appropriate for common web services and available on Redis Cloud, which offers a free plan for trial purposes.
-3. LlmMemory::Broca: Responds to queries using memories provided by the Hippocampus component. ERB is used for prompt templates, and a variety of templates can be found online (e.g., in LangChain prompt).
+
+> Wernicke's area in brain is involved in the comprehension of written and spoken language
+
+2. LlmMemory::Hippocampus: Handles interaction with vector databases to retrieve relevant information based on the query. Currently, Redis with the Redisearch module is used as the vector database. (Note that Redisearch is a proprietary modules and available on RedisCloud, which offers a free plan). The reason for choosing this is that Redis is commonly used and easy to integrate with web services.
+
+> Hippocampus in brain plays important roles in the consolidation of information from short-term memory to long-term memory
+
+3. LlmMemory::Broca: Responds to queries using memories provided by the Hippocampus component. ERB is used for prompt templates, and a variety of templates can be found online (e.g., in [LangChain Hub](https://github.com/hwchase17/langchain-hub#-prompts)).
+
+> Broca's area in brain is also known as the motor speech area.
 
 ## Installation
 
