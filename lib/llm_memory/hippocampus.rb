@@ -13,6 +13,8 @@ module LlmMemory
       store_name: :redis,
       index_name: "llm_memory"
     )
+      LlmMemory.configure
+
       embedding_class = EmbeddingManager.embeddings[embedding_name]
       raise "Embedding '#{embedding_name}' not found." unless embedding_class
       @embedding_instance = embedding_class.new

@@ -13,3 +13,6 @@ gem "webmock", "~> 3.18.1"
 gem "ruby-openai"
 gem "tiktoken_ruby"
 gem "redis"
+# dev
+gem "dotenv"
+gem "pry"

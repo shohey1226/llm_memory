@@ -20,5 +20,4 @@ module LlmMemory
     self.configuration ||= Configuration.new
     yield(configuration) if block_given?
   end
-  configure # init for default values
 end

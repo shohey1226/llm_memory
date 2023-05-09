@@ -12,6 +12,7 @@ module LlmMemory
       temperature: 0.7,
       max_token: 4096
     )
+      LlmMemory.configure
       @prompt = prompt
       @model = model
       @messages = []
