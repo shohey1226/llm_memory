@@ -16,7 +16,6 @@ This enables better integration with systems such as Rails and web services whil
 
 ![image](https://user-images.githubusercontent.com/1880965/236099477-421b2003-79d2-4a7c-8f80-1afac4fd616d.png)
 
-
 1. LlmMemory::Wernicke: Responsible for loading external data (currently from files). More loader types are planned for future development.
 
 > Wernicke's area in brain is involved in the comprehension of written and spoken language
@@ -107,6 +106,12 @@ query_str2 = "How are you?"
 related_docs = hippocampus.query(query_str2, limit: 3)
 message2 = broca.respond(query_str: query_str2, related_docs: related_docs)
 ```
+
+## Plugins
+
+| Plugin Name             | Type   | Module   | Link                                                          |
+| ----------------------- | ------ | -------- | ------------------------------------------------------------- |
+| llm_memory_gmail_loader | Loader | Wernicke | [link](https://github.com/shohey1226/llm_memory_gmail_loader) |
 
 ## Development
 
