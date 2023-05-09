@@ -109,6 +109,8 @@ message2 = broca.respond(query_str: query_str2, related_docs: related_docs)
 
 ## Plugins
 
+The table below provides a list of plugins utilized by llm_memory. The aim is to keep the core llm_memory lightweight while allowing for easy extensibility through the use of plugins.
+
 | Plugin Name             | Type   | Module   | Link                                                          |
 | ----------------------- | ------ | -------- | ------------------------------------------------------------- |
 | llm_memory_gmail_loader | Loader | Wernicke | [link](https://github.com/shohey1226/llm_memory_gmail_loader) |
