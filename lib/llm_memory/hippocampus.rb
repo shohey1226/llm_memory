@@ -28,7 +28,20 @@ module LlmMemory
       @chunk_overlap = chunk_overlap
     end
 
+    # validate the document format
+    def validate_documents(documents)
+      is_valid = documents.all? do |hash|
+        hash.is_a?(Hash) &&
+          hash.key?(:content) && hash[:content].is_a?(String) &&
+          hash.key?(:metadata) && hash[:metadata].is_a?(Hash)
+      end
+      unless is_valid
+        raise "Your documents need to have an array of hashes (content: string and metadata: hash)"
+      end
+    end
+
     def memorize(docs)
+      validate_documents(docs)
       docs = make_chunks(docs)
       docs = add_vectors(docs)
       @store.create_index unless @store.index_exists?
