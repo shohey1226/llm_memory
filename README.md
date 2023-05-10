@@ -85,7 +85,7 @@ related_docs = hippocampus.query(query_str, limit: 3)
 #},,,]
 
 # ERB
-template = <<-TEMPLATE
+prompt = <<-TEMPLATE
 Context information is below.
 ---------------------
 <% related_docs.each do |doc| %>
@@ -98,7 +98,7 @@ Given the context information and not prior knowledge,
 answer the question: <%= query_str %>
 TEMPLATE
 
-broca = LlmMemory::Broca.new(prompt: tempate, model: 'gpt-3.5-turbo')
+broca = LlmMemory::Broca.new(prompt: prompt, model: 'gpt-3.5-turbo')
 messages = broca.respond(query_str: query_str, related_docs: related_docs)
 
 ...

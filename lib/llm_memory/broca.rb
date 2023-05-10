@@ -20,26 +20,31 @@ module LlmMemory
       @max_token = max_token
     end
 
-    def respond(*args)
-      final_prompt = generate_prompt(*args)
+    def respond(args)
+      final_prompt = generate_prompt(args)
       @messages.push({role: "user", content: final_prompt})
       adjust_token_count
-      response = client.chat(
-        parameters: {
-          model: @model,
-          messages: @messages,
-          temperature: @temperature
-        }
-      )
-      response_conent = response.dig("choices", 0, "message", "content")
-      @messages.push({role: "system", content: response_conent})
-      response_conent
+      begin
+        response = client.chat(
+          parameters: {
+            model: @model,
+            messages: @messages,
+            temperature: @temperature
+          }
+        )
+        response_content = response.dig("choices", 0, "message", "content")
+        @messages.push({role: "system", content: response_content})
+        response_content
+      rescue => e
+        puts e.inspect
+        # @messages = []
+        nil
+      end
     end
 
-    def generate_prompt(*args)
-      merged_args = args.reduce(:merge)
+    def generate_prompt(args)
       erb = ERB.new(@prompt)
-      erb.result_with_hash(merged_args)
+      erb.result_with_hash(args)
     end
 
     def adjust_token_count
