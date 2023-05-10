@@ -16,10 +16,26 @@ RSpec.describe LlmMemory::Hippocampus do
     end
 
     it "should returns chunked docs" do
-      hippocampus = LlmMemory::Hippocampus.new(chunk_size: 1, chunk_overlap: 0)
-      docs = [{content: "foo bar", metadata: {info: "test"}}]
+      hippocampus = LlmMemory::Hippocampus.new(chunk_size: 4, chunk_overlap: 2)
+      docs = [{content: "123456789", metadata: {info: "test"}}]
       docs = hippocampus.make_chunks(docs)
-      expect(docs).to eq([{content: "foo", metadata: {info: "test"}}, {content: "bar", metadata: {info: "test"}}])
+      expect(docs).to eq([
+        {content: "1234", metadata: {info: "test"}},
+        {content: "3456", metadata: {info: "test"}},
+        {content: "5678", metadata: {info: "test"}},
+        {content: "789", metadata: {info: "test"}}
+      ])
+    end
+
+    it "should returns chunked docs" do
+      hippocampus = LlmMemory::Hippocampus.new(chunk_size: 5, chunk_overlap: 3)
+      docs = [{content: "123456789", metadata: {info: "test"}}]
+      docs = hippocampus.make_chunks(docs)
+      expect(docs).to eq([
+        {content: "12345", metadata: {info: "test"}},
+        {content: "34567", metadata: {info: "test"}},
+        {content: "56789", metadata: {info: "test"}}
+      ])
     end
   end
 

@@ -23,7 +23,7 @@ module LlmMemory
       raise "Store '#{store_name}' not found." unless store_class
       @store = store_class.new(index_name: index_name)
 
-      # word count, not char count
+      # char count, not word count
       @chunk_size = chunk_size
       @chunk_overlap = chunk_overlap
     end
@@ -87,18 +87,14 @@ module LlmMemory
       docs.each do |item|
         content = item[:content]
         metadata = item[:metadata]
-        words = content.split
-
-        if words.length > @chunk_size
+        if content.length > @chunk_size
           start_index = 0
-
-          while start_index < words.length
-            end_index = [start_index + @chunk_size, words.length].min
-            chunk_words = words[start_index...end_index]
-            chunk = chunk_words.join(" ")
+          while start_index < content.length
+            end_index = [start_index + @chunk_size, content.length].min
+            chunk = content[start_index...end_index]
             result << {content: chunk, metadata: metadata}
-
-            start_index += @chunk_size - @chunk_overlap # Move index to create a overlap
+            break if end_index == content.length
+            start_index += @chunk_size - @chunk_overlap
           end
         else
           result << {content: content, metadata: metadata}
