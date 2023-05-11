@@ -31,7 +31,7 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
-  spec.add_dependency "tiktoken_ruby", "~> 0.0.4"
+  spec.add_dependency "tokenizers", "~> 0.3.3"
   spec.add_dependency "ruby-openai", "~> 3.7.0"
   spec.add_dependency "redis", "~> 4.6.0"
 

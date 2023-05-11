@@ -1,5 +1,5 @@
 require "erb"
-require "tiktoken_ruby"
+require "tokenizers"
 
 module LlmMemory
   class Broca
@@ -51,9 +51,9 @@ module LlmMemory
       count = 0
       new_messages = []
       @messages.reverse_each do |message|
-        encoded = tokenizer.encode(message[:content])
+        encoded = tokenizer.encode(message[:content], add_special_tokens: true)
         if count < @max_token
-          count += encoded.length
+          count += encoded.tokens.length
           new_messages.push(message)
         else
           break
@@ -63,7 +63,7 @@ module LlmMemory
     end
 
     def tokenizer
-      @tokenizer ||= Tiktoken.encoding_for_model("gpt-4")
+      @tokenizer ||= Tokenizers.from_pretrained("gpt2")
     end
   end
 end

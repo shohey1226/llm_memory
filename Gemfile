@@ -11,7 +11,7 @@ gem "standard", "~> 1.3"
 gem "vcr", "~> 6.1.0"
 gem "webmock", "~> 3.18.1"
 gem "ruby-openai"
-gem "tiktoken_ruby"
+gem "tokenizers"
 gem "redis"
 # dev
 gem "dotenv"
