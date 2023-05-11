@@ -61,6 +61,8 @@ To use LLM Memory, follow these steps:
 5. Use LlmMemory::Hippocampus to search for relevant information based on user queries
 6. Create and use ERB templates with LlmMemory::Broca to generate responses based on the information retrieved
 
+For the details of each class, please refer to [API reference document](https://github.com/shohey1226/llm_memory/wiki/API-Reference).
+
 ```ruby
 docs = LlmMemory::Wernicke.load(:file, "/tmp/a_directory")
 # docs is just an array of hash.
