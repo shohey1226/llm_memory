@@ -57,7 +57,8 @@ module LlmMemory
         v.each_slice(2).to_h.transform_keys(&:to_sym)
       }
       result.each do |item|
-        item[:metadata] = JSON.parse(item[:metadata])
+        hash = JSON.parse(item[:metadata])
+        item[:metadata] = hash.transform_keys(&:to_sym)
       end
       result
     end

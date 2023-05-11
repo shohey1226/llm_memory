@@ -71,6 +71,7 @@ RSpec.describe LlmMemory::Hippocampus do
       # pp res
       expect(res.length).to eq(2)
       expect(res.first[:content]).to eq("Hello, I'm Shohei.")
+      expect(res.first[:metadata][:info]).to eq("name")
     end
   end
 end
