@@ -99,7 +99,7 @@ answer the question: <%= query_str %>
 TEMPLATE
 
 broca = LlmMemory::Broca.new(prompt: prompt, model: 'gpt-3.5-turbo')
-messages = broca.respond(query_str: query_str, related_docs: related_docs)
+message = broca.respond(query_str: query_str, related_docs: related_docs)
 
 ...
 query_str2 = "How are you?"

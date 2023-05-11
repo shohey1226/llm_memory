@@ -62,7 +62,7 @@ module LlmMemory
       result
     end
 
-    def forgot_all
+    def forget_all
       @store.drop_index
     end
 
