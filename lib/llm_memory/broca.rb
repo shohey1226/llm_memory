@@ -32,11 +32,12 @@ module LlmMemory
             temperature: @temperature
           }
         )
+        LlmMemory.logger.debug(response)
         response_content = response.dig("choices", 0, "message", "content")
-        @messages.push({role: "system", content: response_content})
+        @messages.push({role: "system", content: response_content}) unless response_content.nil?
         response_content
       rescue => e
-        puts e.inspect
+        LlmMemory.logger.info(e.inspect)
         # @messages = []
         nil
       end
@@ -52,8 +53,9 @@ module LlmMemory
       new_messages = []
       @messages.reverse_each do |message|
         encoded = tokenizer.encode(message[:content], add_special_tokens: true)
-        if count < @max_token
-          count += encoded.tokens.length
+        token_count = encoded.tokens.length
+        count += token_count
+        if count <= @max_token
           new_messages.push(message)
         else
           break

@@ -1,64 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: get
-    uri: https://huggingface.co/gpt2/resolve/main/tokenizer.json
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - tokenizers/0.13.3; bindings/Ruby; version/0.3.3
-      If-None-Match:
-      - '"4b988bccc9dc5adacd403c00b4704976196548f8"'
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 304
-      message: Not Modified
-    headers:
-      Connection:
-      - keep-alive
-      Date:
-      - Thu, 11 May 2023 04:00:34 GMT
-      Server:
-      - nginx
-      X-Powered-By:
-      - huggingface-moon
-      X-Request-Id:
-      - Root=1-645c6862-045434da2d81dddd0bb23514
-      Access-Control-Allow-Origin:
-      - https://huggingface.co
-      Vary:
-      - Origin
-      Access-Control-Expose-Headers:
-      - X-Repo-Commit,X-Request-Id,X-Error-Code,X-Error-Message,ETag,Link,Accept-Ranges,Content-Range
-      X-Repo-Commit:
-      - e7da7f221d5bf496a48136c0cd264e630fe9fcc8
-      Accept-Ranges:
-      - bytes
-      Content-Security-Policy:
-      - default-src none; sandbox
-      Etag:
-      - '"4b988bccc9dc5adacd403c00b4704976196548f8"'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
-      X-Cache:
-      - Miss from cloudfront
-      Via:
-      - 1.1 ae43d281125b254ba267bbf70e4f9a24.cloudfront.net (CloudFront)
-      X-Amz-Cf-Pop:
-      - NRT57-P4
-      X-Amz-Cf-Id:
-      - 5CF9u0rtEM8ok440kBbbumJugDlAbRLYevMH9xmIaXiZa0HY_9jW-g==
-    body:
-      encoding: UTF-8
-      string: ''
-  recorded_at: Thu, 11 May 2023 04:00:35 GMT
-- request:
     method: post
     uri: https://api.openai.com/v1/chat/completions
     body:
@@ -84,7 +26,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 11 May 2023 04:00:36 GMT
+      - Thu, 11 May 2023 12:26:27 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -100,7 +42,7 @@ http_interactions:
       Openai-Organization:
       - emon-qgiyyz
       Openai-Processing-Ms:
-      - '764'
+      - '875'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -118,20 +60,20 @@ http_interactions:
       X-Ratelimit-Reset-Tokens:
       - 47ms
       X-Request-Id:
-      - e5c8f510f1f93a5ebe24c7b8d26d7a29
+      - def726692919eca424dec8ff3e77edab
       Cf-Cache-Status:
       - DYNAMIC
       Server:
       - cloudflare
       Cf-Ray:
-      - 7c57840c88210ab4-NRT
+      - 7c5a690c5d1b0afc-NRT
       Alt-Svc:
       - h3=":443"; ma=86400, h3-29=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"chatcmpl-7Erljhpdu4IgZyxnW2V4cvypvyvo7","object":"chat.completion","created":1683777635,"model":"gpt-3.5-turbo-0301","usage":{"prompt_tokens":47,"completion_tokens":6,"total_tokens":53},"choices":[{"message":{"role":"assistant","content":"Your
+      string: '{"id":"chatcmpl-7EzfGnrt55sZTqj2ws1Nfvx8H0w5U","object":"chat.completion","created":1683807986,"model":"gpt-3.5-turbo-0301","usage":{"prompt_tokens":47,"completion_tokens":6,"total_tokens":53},"choices":[{"message":{"role":"assistant","content":"Your
         name is Shohei."},"finish_reason":"stop","index":0}]}
 
         '
-  recorded_at: Thu, 11 May 2023 04:00:36 GMT
+  recorded_at: Thu, 11 May 2023 12:26:27 GMT
 recorded_with: VCR 6.1.0
