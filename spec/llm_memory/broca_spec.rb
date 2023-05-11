@@ -32,7 +32,7 @@ RSpec.describe LlmMemory::Broca do
   end
 
   describe "adjust_token_count" do
-    it "should remove the message", :vcr do
+    it "should count token", :vcr do
       broca = LlmMemory::Broca.new(prompt: "I", max_token: 4)
       broca.messages = [{content: "foo bar"}, {content: "this is my pen"}]
       broca.adjust_token_count
