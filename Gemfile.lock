@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    llm_memory (0.1.4)
+    llm_memory (0.1.5)
       redis (~> 4.6.0)
       ruby-openai (~> 3.7.0)
       tokenizers (~> 0.3.3)
