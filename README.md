@@ -113,10 +113,28 @@ message2 = broca.respond(query_str: query_str2, related_docs: related_docs)
 
 The table below provides a list of plugins utilized by llm_memory. The aim is to keep the core llm_memory lightweight while allowing for easy extensibility through the use of plugins.
 
-| Plugin Name             | Type   | Module      | Link                                                          | Usage                                      |
-| ----------------------- | ------ | ----------- | ------------------------------------------------------------- | ------------------------------------------ |
-| llm_memory_gmail_loader | Loader | Wernicke    | [link](https://github.com/shohey1226/llm_memory_gmail_loader) | 　`LlmMemory::Wernicke.load(:gmail,,,)`    |
-| llm_memory_pgvector     | Store  | Hippocampus | [link](https://github.com/shohey1226/llm_memory_pgvector)     | `LlmMemory::Hippocampus.new(:pgvector,,,)` |
+Install the plugin and update the method.
+
+For example, if you wan to use pgvector. then,
+
+```
+$ bundle add llm_memory_pgvector
+```
+
+Then, load it instead of `:redis` (default is redis).
+
+```ruby
+# may need to have require depending on the project
+# require llm_memory_pgvector
+hippocamups = LlmMemory::Hippocampus.new(store_name: :pgvector)`
+```
+
+Please refer to the links for the details.
+
+| Plugin Name             | Type   | Module      | Link                                                          |
+| ----------------------- | ------ | ----------- | ------------------------------------------------------------- |
+| llm_memory_gmail_loader | Loader | Wernicke    | [link](https://github.com/shohey1226/llm_memory_gmail_loader) |
+| llm_memory_pgvector     | Store  | Hippocampus | [link](https://github.com/shohey1226/llm_memory_pgvector)     |
 
 ## Development
 
