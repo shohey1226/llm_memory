@@ -14,7 +14,8 @@ This enables better integration with systems such as Rails and web services whil
 
 ## LLM Memory Components
 
-![image](https://user-images.githubusercontent.com/1880965/236099477-421b2003-79d2-4a7c-8f80-1afac4fd616d.png)
+![llm_memory_diagram](https://github.com/shohey1226/llm_memory/assets/1880965/b77d0efa-3fec-4549-b98a-eae510de5c3d)
+
 
 1. LlmMemory::Wernicke: Responsible for loading external data (currently from files). More loader types are planned for future development.
 
