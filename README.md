@@ -16,7 +16,6 @@ This enables better integration with systems such as Rails and web services whil
 
 ![llm_memory_diagram](https://github.com/shohey1226/llm_memory/assets/1880965/b77d0efa-3fec-4549-b98a-eae510de5c3d)
 
-
 1. LlmMemory::Wernicke: Responsible for loading external data (currently from files). More loader types are planned for future development.
 
 > Wernicke's area in brain is involved in the comprehension of written and spoken language
@@ -114,10 +113,10 @@ message2 = broca.respond(query_str: query_str2, related_docs: related_docs)
 
 The table below provides a list of plugins utilized by llm_memory. The aim is to keep the core llm_memory lightweight while allowing for easy extensibility through the use of plugins.
 
-| Plugin Name             | Type   | Module      | Link                                                          |
-| ----------------------- | ------ | ----------- | ------------------------------------------------------------- |
-| llm_memory_gmail_loader | Loader | Wernicke    | [link](https://github.com/shohey1226/llm_memory_gmail_loader) |
-| llm_memory_pgvector     | Store  | Hippocampus | [link](https://github.com/shohey1226/llm_memory_pgvector)     |
+| Plugin Name             | Type   | Module      | Link                                                          | Usage                                      |
+| ----------------------- | ------ | ----------- | ------------------------------------------------------------- | ------------------------------------------ |
+| llm_memory_gmail_loader | Loader | Wernicke    | [link](https://github.com/shohey1226/llm_memory_gmail_loader) | 　`LlmMemory::Wernicke.load(:gmail,,,)`    |
+| llm_memory_pgvector     | Store  | Hippocampus | [link](https://github.com/shohey1226/llm_memory_pgvector)     | `LlmMemory::Hippocampus.new(:pgvector,,,)` |
 
 ## Development
 
