@@ -10,7 +10,7 @@ module LlmMemory
       embedding_name: :openai,
       chunk_size: 1024,
       chunk_overlap: 50,
-      store_name: :redis,
+      store: :redis,
       index_name: "llm_memory"
     )
       LlmMemory.configure
@@ -19,8 +19,8 @@ module LlmMemory
       raise "Embedding '#{embedding_name}' not found." unless embedding_class
       @embedding_instance = embedding_class.new
 
-      store_class = StoreManager.stores[store_name]
-      raise "Store '#{store_name}' not found." unless store_class
+      store_class = StoreManager.stores[store]
+      raise "Store '#{store}' not found." unless store_class
       @store = store_class.new(index_name: index_name)
 
       # char count, not word count

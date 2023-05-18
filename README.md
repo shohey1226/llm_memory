@@ -126,7 +126,7 @@ Then, load it instead of `:redis` (default is redis).
 ```ruby
 # may need to have require depending on the project
 # require llm_memory_pgvector
-hippocamups = LlmMemory::Hippocampus.new(store_name: :pgvector)`
+hippocamups = LlmMemory::Hippocampus.new(store: :pgvector)`
 ```
 
 Please refer to the links for the details.
