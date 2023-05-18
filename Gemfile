@@ -13,6 +13,7 @@ gem "webmock", "~> 3.18.1"
 gem "ruby-openai"
 gem "tokenizers"
 gem "redis"
+gem "llm_memory_pgvector"
 # dev
 gem "dotenv"
 gem "pry"

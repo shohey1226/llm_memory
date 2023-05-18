@@ -148,7 +148,17 @@ module LlmMemory
         "DIALECT",
         2
       ]
-      @client.call(command)
+      response_list = @client.call(command)
+      response_list.shift # the first one is the size
+      # now [redis_key1, [],,, ]
+      result = response_list.each_slice(2).to_h.values.map { |v|
+        v.each_slice(2).to_h.transform_keys(&:to_sym)
+      }
+      result.each do |item|
+        hash = JSON.parse(item[:metadata])
+        item[:metadata] = hash.transform_keys(&:to_sym)
+      end
+      result
     end
   end
 end

@@ -12,6 +12,12 @@ jobs:
         image: redis/redis-stack-server:latest
         ports:
           - 6379:6379
+      pgvector:
+        image: ankane/pgvector:latest
+        env:
+          POSTGRES_PASSWORD: foobar
+        ports:
+          - 5432:5432
     name: Ruby ${{ matrix.ruby }}
     strategy:
       matrix:

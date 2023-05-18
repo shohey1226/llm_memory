@@ -1,5 +1,6 @@
 require "spec_helper"
 require "llm_memory/hippocampus"
+require "llm_memory_pgvector"
 
 RSpec.describe LlmMemory::Hippocampus do
   it "instantiates a new Broca object" do
@@ -70,6 +71,28 @@ RSpec.describe LlmMemory::Hippocampus do
       res = hippocampus.query("What is my name?", limit: 2)
       # pp res
       expect(res.length).to eq(2)
+      expect(res.first[:content]).to eq("Hello, I'm Shohei.")
+      expect(res.first[:metadata][:info]).to eq("name")
+    end
+  end
+
+  describe "pgvector" do
+    before do
+      LlmMemoryPgvector.configure do |c|
+        c.pg_url = "postgresql://postgres:foobar@localhost"
+      end
+    end
+
+    it "search from vgvector and find", :vcr do
+      hippocampus = LlmMemory::Hippocampus.new(store: :pgvector)
+      hippocampus.forget_all
+      docs = [
+        {content: "Hello, I'm Shohei.", metadata: {info: "name"}},
+        {content: "I'm working as a sotware developer", metadata: {info: "profession"}},
+        {content: "I like music", metadata: {info: "hobby"}}
+      ]
+      hippocampus.memorize(docs)
+      res = hippocampus.query("What is my name?", limit: 2)
       expect(res.first[:content]).to eq("Hello, I'm Shohei.")
       expect(res.first[:metadata][:info]).to eq("name")
     end
