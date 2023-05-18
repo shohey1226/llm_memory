@@ -15,6 +15,10 @@ module LlmMemory
       raise NotImplementedError, "Each store must implement the 'create_index' method."
     end
 
+    def index_exists?
+      raise NotImplementedError, "Each store must implement the 'index_exists?' method."
+    end
+
     def drop_index
       raise NotImplementedError, "Each store must implement the 'drop_index' method."
     end
