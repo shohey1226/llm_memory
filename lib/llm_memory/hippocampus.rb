@@ -54,7 +54,7 @@ module LlmMemory
     end
 
     def forget_all
-      @store.drop_index
+      @store.drop_index if @store.index_exists?
     end
 
     def add_vectors(docs)
