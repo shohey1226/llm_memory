@@ -43,6 +43,46 @@ module LlmMemory
       end
     end
 
+    def respond_with_schema(context: {}, schema: {})
+      response_content = respond(context)
+      begin
+        response = client.chat(
+          parameters: {
+            model: "gpt-3.5-turbo-0613", # as of July 3, 2023
+            messages: [
+              {
+                role: "user",
+                content: response_content
+              }
+            ],
+            functions: [
+              {
+                name: "broca",
+                description: "Formating the content with the specified schema",
+                parameters: schema
+              }
+            ]
+          }
+        )
+        LlmMemory.logger.debug(response)
+        message = response.dig("choices", 0, "message")
+        if message["role"] == "assistant" && message["function_call"]
+          function_name = message.dig("function_call", "name")
+          args =
+            JSON.parse(
+              message.dig("function_call", "arguments"),
+              {symbolize_names: true}
+            )
+          if function_name == "broca"
+            args
+          end
+        end
+      rescue => e
+        LlmMemory.logger.info(e.inspect)
+        nil
+      end
+    end
+
     def generate_prompt(args)
       erb = ERB.new(@prompt)
       erb.result_with_hash(args)

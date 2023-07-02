@@ -47,5 +47,24 @@ RSpec.describe LlmMemory::Broca do
       res = broca.respond(related_docs: related_docs, query_str: "what is my name?")
       expect(res).to include("Shohei")
     end
+
+    it "runs respond_with_schema method", :vcr do
+      related_docs = [{content: "My name is Shohei"}, {content: "I'm a software engineer"}]
+      broca = LlmMemory::Broca.new(prompt: template)
+      res = broca.respond_with_schema(
+        context: {related_docs: related_docs, query_str: "what is my name?"},
+        schema: {
+          type: :object,
+          properties: {
+            name: {
+              type: :string,
+              description: "The name of person"
+            }
+          },
+          required: ["name"]
+        }
+      )
+      expect(res).to include({name: "Shohei"})
+    end
   end
 end
