@@ -55,12 +55,14 @@ RSpec.describe LlmMemory::Hippocampus do
   describe "memorize", :vcr do
     it "should add docs to redis", :vcr do
       hippocampus = LlmMemory::Hippocampus.new
+      timestamp = "20201231235959"
       docs = [
-        {content: "Hello, I'm Shohei.", metadata: {info: "name"}},
-        {content: "I'm working as a sotware developer", metadata: {info: "profession"}},
-        {content: "I like music", metadata: {info: "hobby"}}
+        {content: "Hello, I'm Shohei.", metadata: {info: "name", timestamp: timestamp}},
+        {content: "I'm working as a sotware developer", metadata: {info: "profession", timestamp: timestamp}},
+        {content: "I like music", metadata: {info: "hobby", timestamp: timestamp}}
       ]
       res = hippocampus.memorize(docs)
+      expect(res.keys.map { |k| k.split(":")[2] }.uniq.first).to eq timestamp
       expect(res.values.first).to eq("Hello, I'm Shohei.")
     end
   end
