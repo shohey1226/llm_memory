@@ -54,8 +54,10 @@ end
 
 To use LLM Memory, follow these steps:
 
+If you want to use pgvector instead of Redisearch. You can use the plugin. Please check the doc and change the setup steps(2&3)
+
 1. Install the gem: gem install llm_memory
-2. Set up Redis with Redisearch module enabled - Go to [Reids Cloud](https://redis.com/redis-enterprise-cloud/overview/) and get the redis url
+2. Set up Redis with Redisearch module enabled - Go to [Reids Cloud](https://redis.com/redis-enterprise-cloud/overview/) and get the redis url.
 3. Configure LLM Memory to connect to your Redis instance
 4. Use LlmMemory::Wernicke to load data from your external sources
 5. Use LlmMemory::Hippocampus to search for relevant information based on user queries
@@ -71,12 +73,13 @@ docs = LlmMemory::Wernicke.load(:file, "/tmp/a_directory")
 # docs = [{
 #   content: "Hi there",
 #   metadata: {
-#     file_name: "a.txt"
+#     file_name: "a.txt",
+#     timestamp: "20201231235959"
 #   }
 # },,,]
 
 hippocampus = LlmMemory::Hippocampus.new
-hippocampus.memorize(docs)
+res = hippocampus.memorize(docs)
 
 query_str = "What is my name?"
 related_docs = hippocampus.query(query_str, limit: 3)
