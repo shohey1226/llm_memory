@@ -79,7 +79,12 @@ module LlmMemory
       result = {}
       @client.pipelined do |pipeline|
         data.each_with_index do |d, i|
-          key = "#{@index_name}:#{SecureRandom.uuid.delete("-")}"
+          key = @index_name # index_name:create_time:metadata_timestamp:uuid
+          timestamp = d.dig(:metadata, :timestamp)
+          key += ":#{Time.now.strftime("%Y%m%d%H%M%S")}"
+          key += ":#{timestamp}"
+          key += ":#{SecureRandom.hex(8)}"
+
           meta_json = d[:metadata].nil? ? "" : d[:metadata].to_json # serialize
           vector_value = d[:vector].map(&:to_f).pack("f*")
           pipeline.hset(

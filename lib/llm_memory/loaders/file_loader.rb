@@ -14,11 +14,13 @@ module LlmMemory
 
         file_name = File.basename(file_path)
         file_content = File.read(file_path)
+        ctime = File.ctime(file_path)
 
         files_array << {
           content: file_content,
           metadata: {
-            file_name: file_name
+            file_name: file_name,
+            timestamp: ctime.strftime("%Y%m%d%H%M%S") # YYMMDDHHmmss
           }
         }
       end
