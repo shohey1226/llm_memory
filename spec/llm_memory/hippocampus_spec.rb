@@ -61,15 +61,27 @@ RSpec.describe LlmMemory::Hippocampus do
         {content: "I'm working as a sotware developer", metadata: {info: "profession", timestamp: timestamp}},
         {content: "I like music", metadata: {info: "hobby", timestamp: timestamp}}
       ]
+      hippocampus.forget_all
       res = hippocampus.memorize(docs)
       expect(res.keys.map { |k| k.split(":")[2] }.uniq.first).to eq timestamp
+      expect(hippocampus.list.keys.sort).to eq res.keys.sort
       expect(res.values.first).to eq("Hello, I'm Shohei.")
+      hippocampus.forget(res.keys.first)
+      expect(hippocampus.list.keys.size).to eq(2)
     end
   end
 
   describe "query", :vcr do
     it "search from redis and find", :vcr do
       hippocampus = LlmMemory::Hippocampus.new
+      timestamp = "20201231235959"
+      docs = [
+        {content: "Hello, I'm Shohei.", metadata: {info: "name", timestamp: timestamp}},
+        {content: "I'm working as a sotware developer", metadata: {info: "profession", timestamp: timestamp}},
+        {content: "I like music", metadata: {info: "hobby", timestamp: timestamp}}
+      ]
+      hippocampus.forget_all
+      hippocampus.memorize(docs)
       res = hippocampus.query("What is my name?", limit: 2)
       # pp res
       expect(res.length).to eq(2)

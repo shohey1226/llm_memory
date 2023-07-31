@@ -26,7 +26,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 18 May 2023 13:02:53 GMT
+      - Mon, 31 Jul 2023 06:01:49 GMT
       Content-Type:
       - application/json
       Transfer-Encoding:
@@ -38,11 +38,11 @@ http_interactions:
       Cache-Control:
       - no-cache, must-revalidate
       Openai-Model:
-      - gpt-3.5-turbo-0301
+      - gpt-3.5-turbo-0613
       Openai-Organization:
       - emon-qgiyyz
       Openai-Processing-Ms:
-      - '1169'
+      - '385'
       Openai-Version:
       - '2020-10-01'
       Strict-Transport-Security:
@@ -60,20 +60,38 @@ http_interactions:
       X-Ratelimit-Reset-Tokens:
       - 47ms
       X-Request-Id:
-      - 8400c5dbbf83446587648ce30c41e533
+      - d9f43e749351a4012e521b2e970a8130
       Cf-Cache-Status:
       - DYNAMIC
       Server:
       - cloudflare
       Cf-Ray:
-      - 7c944c077a63aff4-NRT
+      - 7ef3a0feed38f5c4-NRT
       Alt-Svc:
-      - h3=":443"; ma=86400, h3-29=":443"; ma=86400
+      - h3=":443"; ma=86400
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"chatcmpl-7HXZMxW36Pzd6FMlGxoCNnUoY8JtW","object":"chat.completion","created":1684414972,"model":"gpt-3.5-turbo-0301","usage":{"prompt_tokens":47,"completion_tokens":6,"total_tokens":53},"choices":[{"message":{"role":"assistant","content":"Your
-        name is Shohei."},"finish_reason":"stop","index":0}]}
-
-        '
-  recorded_at: Thu, 18 May 2023 13:02:53 GMT
+      string: |
+        {
+          "id": "chatcmpl-7iGGT6lFXmNwxa1eCLWYS16W3Fyz9",
+          "object": "chat.completion",
+          "created": 1690783309,
+          "model": "gpt-3.5-turbo-0613",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "Your name is Shohei."
+              },
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 46,
+            "completion_tokens": 6,
+            "total_tokens": 52
+          }
+        }
+  recorded_at: Mon, 31 Jul 2023 06:01:49 GMT
 recorded_with: VCR 6.1.0

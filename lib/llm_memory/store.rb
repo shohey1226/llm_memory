@@ -27,6 +27,14 @@ module LlmMemory
       raise NotImplementedError, "Each store must implement the 'add' method."
     end
 
+    def list
+      raise NotImplementedError, "Each store must implement the 'list' method."
+    end
+
+    def delete
+      raise NotImplementedError, "Each store must implement the 'delete' method."
+    end
+
     def search
       raise NotImplementedError, "Each store must implement the 'search' method."
     end
