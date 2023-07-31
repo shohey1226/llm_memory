@@ -123,7 +123,33 @@ module LlmMemory
       puts "Unexpected Error: #{e.message}"
     end
 
-    def delete
+    def delete(key)
+      @client.del(key) if @client.exists?(key)
+    end
+
+    def delete_all
+      list.keys.each do |key|
+        delete(key)
+      end
+    end
+
+    def list(patterns = [])
+      patterns = if patterns.empty?
+        ["#{@index_name}:*"]
+      else
+        patterns.map { |pattern| "#{@index_name}:#{pattern}" }
+      end
+      data = {}
+      patterns.each do |pattern|
+        @client.keys(pattern).each do |key|
+          obj = @client.hgetall(key)
+          data[key] = {
+            content: obj.dig("content"),
+            metadata: JSON.parse(obj.dig("metadata"))
+          }
+        end
+      end
+      data
     end
 
     def update

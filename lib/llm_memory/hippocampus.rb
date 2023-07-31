@@ -57,6 +57,14 @@ module LlmMemory
       @store.drop_index if @store.index_exists?
     end
 
+    def forget(key)
+      @store.delete(key)
+    end
+
+    def list(array = [])
+      @store.list(array)
+    end
+
     def add_vectors(docs)
       # embed documents and add vector
       result = []
