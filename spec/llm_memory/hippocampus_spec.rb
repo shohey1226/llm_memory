@@ -64,10 +64,10 @@ RSpec.describe LlmMemory::Hippocampus do
       hippocampus.forget_all
       res = hippocampus.memorize(docs)
       expect(res.keys.map { |k| k.split(":")[2] }.uniq.first).to eq timestamp
-      expect(hippocampus.list.keys.sort).to eq res.keys.sort
+      expect(hippocampus.list.sort).to eq res.keys.sort
       expect(res.values.first).to eq("Hello, I'm Shohei.")
       hippocampus.forget(res.keys.first)
-      expect(hippocampus.list.keys.size).to eq(2)
+      expect(hippocampus.list("*:#{timestamp}:*").size).to eq(2)
     end
   end
 
