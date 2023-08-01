@@ -106,6 +106,8 @@ RSpec.describe LlmMemory::Hippocampus do
         {content: "I like music", metadata: {info: "hobby"}}
       ]
       hippocampus.memorize(docs)
+      expect(hippocampus.list.map { |s| s["id"] }).to eq([1, 2, 3])
+      expect(hippocampus.list(id: [1, 2]).map { |s| s["id"] }).to eq([1, 2])
       res = hippocampus.query("What is my name?", limit: 2)
       expect(res.first[:content]).to eq("Hello, I'm Shohei.")
       expect(res.first[:metadata][:info]).to eq("name")
