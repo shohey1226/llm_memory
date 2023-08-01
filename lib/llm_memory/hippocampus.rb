@@ -61,8 +61,12 @@ module LlmMemory
       @store.delete(key)
     end
 
-    def list(array = [])
-      @store.list(array)
+    def list(*args)
+      @store.list(*args)
+    end
+
+    def get(key)
+      @store.get(key)
     end
 
     def add_vectors(docs)
